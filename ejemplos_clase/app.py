@@ -18,8 +18,8 @@ Ingresar a la siguiente URL para ver los endpoints disponibles
 http://127.0.0.1:5000/
 '''
 
-__author__ = "Inove Coding School"
-__email__ = "INFO@INOVE.COM.AR"
+__author__ = "Emmanuel Torres Molina"
+__email__ = "emmaotm@gmail.com"
 __version__ = "1.1"
 
 # Realizar HTTP POST --> https://www.codepunker.com/tools/http-requests
