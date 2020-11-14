@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS course;
+
+CREATE TABLE course(
+    [id] INTEGER PRIMARY KEY AUTOINCREMENT,
+    [userId] INTEGER NOT NULL,
+    [title] TEXT NOT NULL,
+    [completed] BIT NOT NULL
+);
