@@ -100,11 +100,29 @@ def personas():
 def comparativa():
     try:
         # Mostrar todos los registros en formato tabla
+        """
         result = '''<h3>Implementar una función en persona.py
                     nationality_review</h3>'''
         result += '''<h3>Esa funcion debe devolver los datos que necesite
                     para implementar el grafico a mostrar</h3>'''
         return (result)
+        """
+        x, y = persona.nationality_review()
+
+        fig, ax = plt.subplots(figsize=(16, 9))
+        ax.set_title('Cantidad de Personas Según su Nacionalidad:', fontsize=15)
+        ax.bar(x, y, color='darkgreen')
+        ax.set_xlabel('Nationality', fontsize=16)
+        ax.set_ylabel('Amount of People', fontsize=16)
+        ax.set_facecolor('lightcyan')
+        plt.grid('True')
+
+        output = io.BytesIO()
+        FigureCanvas(fig).print_png(output)
+        plt.close(fig)
+
+        return Response(output.getvalue(), mimetype='image/png')
+
     except:
         return jsonify({'trace': traceback.format_exc()})
 
@@ -118,6 +136,13 @@ def registro():
         # nationality = ...
         
         # persona.insert(name, int(age), nationality)
+
+        name = str(request.form.get('name'))
+        age = str(request.form.get('age'))
+        nationality = str(request.form.get('nationality'))
+
+        persona.insert(name, int(age), nationality)
+
         return Response(status=200)
     
 
