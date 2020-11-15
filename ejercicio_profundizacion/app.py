@@ -1,9 +1,12 @@
 '''
 Ejercicio de Profundización
+
+API Titulos Completados
+
 ---------------------------
 Autor: Torres Molina Emmanuel O.
 Version: 1.1
-Descripcion:
+Descripción:
 Programa creado para que el alumno ponga sus habilidades JSON, 
 matplotlib, bases de datos, request API JSON y Rest API.
 '''
@@ -95,7 +98,6 @@ def show_table_SQL():
     conn.close()
 
     print('\n\n')
-
 
 
 def fill(chunk_activate=False, chunksize=10):
@@ -235,14 +237,15 @@ def user_id_titles(id):
         return jsonify({'trace': traceback.format_exc()})
 
 
+# Ruta que se Ingresar por la URL: 127.0.0.1:5000/user/graph
 @app.route(endpoint['user_graph'])
 def user_graph():
     try:
         x, y = report()
 
-        # Realizo el Gráfico que deseo mostrar:
+        # Realizo el Gráfico de Barras que deseo mostrar:
         fig, ax = plt.subplots(figsize=(16, 9))
-        ax.set_title('Number of Titles Completed by Users:', fontsize=15)
+        ax.set_title('Number of Titles Completed by Users:', fontsize=18)
         ax.bar(x, y, color='darkblue')
         ax.set_xlabel('UserId', fontsize=15)
         ax.set_ylabel('Number of Titles', fontsize=15)
@@ -258,12 +261,14 @@ def user_graph():
         return jsonify({'trace': traceback.format_exc()})
 
 
+# Ruta que se Ingresar por la URL: 127.0.0.1:5000/user/table
 @app.route(endpoint['user_table'])
 def user_table():
     try:
         tabla_html = config('template', config_path_name)
 
         x, y = report()
+
         return render_template(tabla_html['tabla'], row=zip(x, y))
 
     except:
@@ -287,6 +292,8 @@ if __name__ == "__main__":
 
     count = title_completed_count(userId=2)
     print('\n\n{}\n\n'.format(count))
+
+    print('Servidor Corriendo!!\n')
 
     # Lanzo el Servidor:
     app.run(host=server['host'], port=server['port'], debug=True)
