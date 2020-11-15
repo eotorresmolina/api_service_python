@@ -86,3 +86,27 @@ def report(limit=0, offset=0):
     # Cerrar la conexión con la base de datos
     conn.close()
     return query_results
+
+
+def nationality_review():
+    nat = {}
+    amount = 0
+    data = report()
+    d = [{'nationality': row[2]} for row in data]
+
+    for pais in d:
+        nationality = pais.get('nationality')       
+        if nat.get(nationality) is not None:
+            amount = nat.get(nationality) + 1
+        else:
+            amount = 1
+
+        nat[nationality] = amount
+
+    x = [key for key in nat.keys()]
+    y = [value for value in nat.values()]
+
+    return x, y
+
+
+    
