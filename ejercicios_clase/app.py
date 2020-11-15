@@ -141,8 +141,10 @@ def registro():
         age = str(request.form.get('age'))
         nationality = str(request.form.get('nationality'))
 
-        persona.insert(name, int(age), nationality)
+        if (name is None or age is None or age.isdigit() is False or nationality is None):
+            return Response(status=200)
 
+        persona.insert(name, int(age), nationality)
         return Response(status=200)
     
 
