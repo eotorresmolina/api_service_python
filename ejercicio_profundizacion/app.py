@@ -207,7 +207,7 @@ def index():
         result += '<h3>[GET] /user --> Muestra el total de Usuarios</h3>'
         result += '<h3>[GET] /user/{id}/titles --> Mostrar cantidad de títulos completados por el Usuario</h3>'
         result += '<h3>[GET] /user/graph --> Mostrar Gráfico Comparativo de los Usuarios</h3>'
-        result += '<h3>[GET] /user/table --> Mostrar Títulos Completados por Usuarios'
+        result += '<h3>[GET] /user/table --> Mostrar Títulos Completados por Usuarios en una Tabla'
 
         return (result)
 
@@ -250,6 +250,7 @@ def user_graph():
         ax.set_xlabel('UserId', fontsize=15)
         ax.set_ylabel('Number of Titles', fontsize=15)
         ax.set_facecolor('whitesmoke')
+        plt.grid(True)
     
         output = io.BytesIO()
         FigureCanvas(fig).print_png(output)
